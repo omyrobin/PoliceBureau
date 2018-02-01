@@ -1,9 +1,12 @@
 package com.administration.policebureau.home;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -24,6 +27,8 @@ import butterknife.OnCheckedChanged;
 public class HomeActivity extends BaseActivity {
     @BindView(R.id.fl_home_tab)
     FrameLayout fl_home_tab;
+    @BindView(R.id.navigation_bottom)
+    BottomNavigationView navigation_bottom;
     private Fragment[] fragments;
     private int currIndexTab;
     private int indexTab = -1;
@@ -47,6 +52,7 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void initializeActivity() {
         initFragment();
+        setListener();
     }
 
     private void initFragment(){
@@ -69,24 +75,50 @@ public class HomeActivity extends BaseActivity {
 
     }
 
-    @OnCheckedChanged({R.id.rb_tab_new, R.id.rb_tab_history,R.id.rb_tab_message})
-    public void onCheckedChanged(RadioButton radioButton, boolean isChecked){
-        if(isChecked){
-            indexTab = currIndexTab;
-            switch (radioButton.getId()){
-                case R.id.rb_tab_new:
-                    currIndexTab = NEW_ENTER;
-                    break;
+    private void setListener() {
+        navigation_bottom.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if(indexTab != currIndexTab){
+                    indexTab = currIndexTab;
+                    switch (item.getItemId()){
+                        case R.id.navigation_bottom_new:
+                            currIndexTab = NEW_ENTER;
+                            break;
 
-                case R.id.rb_tab_history:
-                    currIndexTab = HISTORY_CHECKIN;
-                    break;
+                        case R.id.navigation_bottom_history:
+                            currIndexTab = HISTORY_CHECKIN;
+                            break;
 
-                default:
-                    currIndexTab = MESSAGE;
-                    break;
+                        default:
+                            currIndexTab = MESSAGE;
+                            break;
+                    }
+                    addFragment();
+                }
+                return true;
             }
-            addFragment();
-        }
+        });
     }
+
+//    @OnCheckedChanged({R.id.rb_tab_new, R.id.rb_tab_history,R.id.rb_tab_message})
+//    public void onCheckedChanged(RadioButton radioButton, boolean isChecked){
+//        if(isChecked){
+//            indexTab = currIndexTab;
+//            switch (radioButton.getId()){
+//                case R.id.rb_tab_new:
+//                    currIndexTab = NEW_ENTER;
+//                    break;
+//
+//                case R.id.rb_tab_history:
+//                    currIndexTab = HISTORY_CHECKIN;
+//                    break;
+//
+//                default:
+//                    currIndexTab = MESSAGE;
+//                    break;
+//            }
+//            addFragment();
+//        }
+//    }
 }

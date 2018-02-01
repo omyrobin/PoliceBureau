@@ -1,51 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <FrameLayout
         android:id="@+id/fl_home_tab"
-        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="0dp">
-    </FrameLayout>
+        android:layout_height="0dp"
+        android:layout_weight="1"></FrameLayout>
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigation_bottom"
+        app:itemBackground="@color/colorWhite"
+        app:itemIconTint="@color/colorPrimary"
+        app:itemTextColor="@color/colorPrimary"
+        app:menu="@menu/navigation_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+    </android.support.design.widget.BottomNavigationView>
 
     <RadioGroup
-        android:orientation="horizontal"
+        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="50dp"
+        android:orientation="horizontal">
 
         <RadioButton
-            android:checked="true"
-            android:textColor="@color/color_home_tab"
+            android:id="@+id/rb_tab_new"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:button="@null"
+            android:checked="true"
             android:gravity="center"
             android:text="新入境"
-            android:id="@+id/rb_tab_new"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:textColor="@color/color_home_tab" />
 
         <RadioButton
-            android:textColor="@color/color_home_tab"
+            android:id="@+id/rb_tab_history"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:button="@null"
             android:gravity="center"
             android:text="历史登记"
-            android:id="@+id/rb_tab_history"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:textColor="@color/color_home_tab" />
 
         <RadioButton
-            android:textColor="@color/color_home_tab"
+            android:id="@+id/rb_tab_message"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:button="@null"
             android:gravity="center"
             android:text="留言"
-            android:id="@+id/rb_tab_message"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:textColor="@color/color_home_tab" />
 
     </RadioGroup>
 

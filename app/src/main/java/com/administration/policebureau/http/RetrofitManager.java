@@ -30,7 +30,7 @@ public class RetrofitManager {
     public static final String HEADER_CONTENT_DISPOSITION = "Content-Disposition";
     public static final String HEADER_ACCEPT_ENCODING = "Accept-Encoding";
     public static final String ENCODING_GZIP = "gzip";
-    public static final int DEFAULT_TIMEOUT = 15;
+    public static final int DEFAULT_TIMEOUT = 10;
     public volatile static Retrofit retrofit;
     public volatile static OkHttpClient client;
     private static Map<String, String> headersMap;

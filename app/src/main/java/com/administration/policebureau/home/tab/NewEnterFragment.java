@@ -2,6 +2,7 @@ package com.administration.policebureau.home.tab;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import com.administration.policebureau.App;
 import com.administration.policebureau.BaseFragment;
 import com.administration.policebureau.R;
+import com.administration.policebureau.adapter.NewEnterAdapter;
 import com.administration.policebureau.api.GetService;
 import com.administration.policebureau.bean.BaseResponse;
 import com.administration.policebureau.bean.CheckInEntity;
@@ -35,6 +37,8 @@ public class NewEnterFragment extends BaseFragment {
     TextView tv_title;
     @BindView(R.id.rv_newenter)
     RecyclerView rv_newenter;
+    @BindView(R.id.swl_newenter)
+    SwipeRefreshLayout swl_newenter;
     private final String TAG = getClass().getSimpleName();
 
     @Override
@@ -53,7 +57,24 @@ public class NewEnterFragment extends BaseFragment {
     @Override
     protected void initializeFragment() {
         initLayoutManager();
-        initData();
+        initSwipeRefreshLayout();
+    }
+
+    private void initSwipeRefreshLayout(){
+        swl_newenter.setColorSchemeResources(new int[]{R.color.colorPrimary, R.color.colorPrimary});
+        swl_newenter.post(new Runnable() {
+            @Override
+            public void run() {
+                swl_newenter.setRefreshing(true);
+                initData();
+            }
+        });
+        swl_newenter.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                initData();
+            }
+        });
     }
 
     private void initLayoutManager(){
@@ -63,21 +84,25 @@ public class NewEnterFragment extends BaseFragment {
 
     private void initData(){
         GetService getService = RetrofitManager.getRetrofit().create(GetService.class);
-        Observable<Response<BaseResponse<CheckInEntity>>> ob = getService.getCheckInList(App.getInstance().getToken());
+        Observable<Response<BaseResponse<CheckInEntity>>> ob = getService.getCheckInList("Bearer "+App.getInstance().getToken());
         RetrofitClient.client().request(ob, new ProgressSubscriber<CheckInEntity>(getActivity()) {
             @Override
             protected void onSuccess(CheckInEntity checkInEntity) {
                 Log.i(TAG, "数据长度是：  " + checkInEntity.getData().size());
+                initAdapter(checkInEntity);
+                swl_newenter.setRefreshing(false);
             }
 
             @Override
             protected void onFailure(String message) {
                 Log.i(TAG, message);
+                swl_newenter.setRefreshing(false);
             }
         });
     }
 
-    private void initAdapter(){
-
+    private void initAdapter(CheckInEntity checkInEntity){
+        NewEnterAdapter adapter = new NewEnterAdapter(getActivity(),checkInEntity);
+        rv_newenter.setAdapter(adapter);
     }
 }
