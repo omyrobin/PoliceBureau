@@ -64,31 +64,29 @@ public class HomeActivity extends BaseActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         if(!fragments[currIndexTab].isAdded()){
             transaction.add(R.id.fl_home_tab,fragments[currIndexTab]);
-//                    .show(fragments[currIndexTab])
-//                    .hide(fragments[indexTab])
-//                    .commit();
         }
-        Log.i("TAG","currIndexTab  " + currIndexTab  + "     :     indexTab " + indexTab);
         transaction.show(fragments[currIndexTab]).hide(fragments[indexTab]).commit();
 
     }
 
     @OnCheckedChanged({R.id.rb_tab_new, R.id.rb_tab_history,R.id.rb_tab_message})
     public void onCheckedChanged(RadioButton radioButton, boolean isChecked){
-        indexTab = currIndexTab;
-        switch (radioButton.getId()){
-            case R.id.rb_tab_new:
-                currIndexTab = NEW_ENTER;
-                break;
+        if(isChecked){
+            indexTab = currIndexTab;
+            switch (radioButton.getId()){
+                case R.id.rb_tab_new:
+                    currIndexTab = NEW_ENTER;
+                    break;
 
-            case R.id.rb_tab_history:
-                currIndexTab = HISTORY_CHECKIN;
-                break;
+                case R.id.rb_tab_history:
+                    currIndexTab = HISTORY_CHECKIN;
+                    break;
 
-            default:
-                currIndexTab = MESSAGE;
-                break;
+                default:
+                    currIndexTab = MESSAGE;
+                    break;
+            }
+            addFragment();
         }
-        addFragment();
     }
 }

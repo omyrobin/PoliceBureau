@@ -5,5 +5,5 @@ package com.administration.policebureau.constant;
  */
 
 public class Url {
-    public static final String BUREAU_BASEURL = "http://106.39.33.2:7070/api/";
+    public static final String BUREAU_BASEURL = "http://119.29.159.231:8080/api/";
 }

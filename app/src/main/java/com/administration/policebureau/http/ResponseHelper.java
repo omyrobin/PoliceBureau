@@ -26,12 +26,14 @@ public class ResponseHelper {
                 return tObservable.flatMap(new Func1<Response<BaseResponse<T>>, Observable<T>>() {
                     @Override
                     public Observable<T> call(final Response<BaseResponse<T>> result) {
-                        if (result.body().getCode() == 0) {
-                            return createData(result.body().getData());
-                        }else {
-//                            Log.i("result", result.body().getMsg());
-                            return Observable.error(new RuntimeException(result.body().getMsg()));
+                        if(result.body()!=null){
+                            if (result.body().getCode() == 0) {
+                                return createData(result.body().getData());
+                            }else {
+                                return Observable.error(new RuntimeException(result.body().getMsg()));
+                            }
                         }
+                        return Observable.error(new RuntimeException("The result body Parse Error"));
                     }
                 }).subscribeOn(Schedulers.io()).unsubscribeOn(Schedulers.io()).subscribeOn(AndroidSchedulers.mainThread()).observeOn(AndroidSchedulers.mainThread());
             }
