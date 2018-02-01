@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">PoliceBureau</string>
+    <string name="phone_number">手机号</string>
+    <string name="input_phone_number">请输入手机号</string>
+    <string name="password">密码</string>
+    <string name="input_password">请输入密码</string>
+    <string name="login">登录</string>
+
+    <string name="network_is_not_available">网络不可用</string>
+    <string name="request_failed">请求失败，请稍后再试...</string>
+    <string name="uploading">上传中...</string>
+</resources>
