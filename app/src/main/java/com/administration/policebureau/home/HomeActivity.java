@@ -38,7 +38,6 @@ public class HomeActivity extends BaseActivity {
     private static final int MESSAGE = 2;
 
 
-
     @Override
     protected int getLayoutId(Bundle savedInstanceState) {
         return R.layout.activity_home;
@@ -55,21 +54,21 @@ public class HomeActivity extends BaseActivity {
         setListener();
     }
 
-    private void initFragment(){
+    private void initFragment() {
         NewEnterFragment newEnterFragment = new NewEnterFragment();
         HistoryCheckInFragment historyCheckInFragment = new HistoryCheckInFragment();
         MessageFragment messageFragment = new MessageFragment();
 
-        fragments = new Fragment[] {newEnterFragment, historyCheckInFragment, messageFragment};
+        fragments = new Fragment[]{newEnterFragment, historyCheckInFragment, messageFragment};
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.fl_home_tab,fragments[currIndexTab]).show(fragments[currIndexTab]).commit();
+        transaction.add(R.id.fl_home_tab, fragments[currIndexTab]).show(fragments[currIndexTab]).commit();
     }
 
-    private void addFragment(){
+    private void addFragment() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        if(!fragments[currIndexTab].isAdded()){
-            transaction.add(R.id.fl_home_tab,fragments[currIndexTab]);
+        if (!fragments[currIndexTab].isAdded()) {
+            transaction.add(R.id.fl_home_tab, fragments[currIndexTab]);
         }
         transaction.show(fragments[currIndexTab]).hide(fragments[indexTab]).commit();
 
@@ -79,21 +78,21 @@ public class HomeActivity extends BaseActivity {
         navigation_bottom.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                indexTab = currIndexTab;
+                switch (item.getItemId()) {
+                    case R.id.navigation_bottom_new:
+                        currIndexTab = NEW_ENTER;
+                        break;
+
+                    case R.id.navigation_bottom_history:
+                        currIndexTab = HISTORY_CHECKIN;
+                        break;
+
+                    default:
+                        currIndexTab = MESSAGE;
+                        break;
+                }
                 if(indexTab != currIndexTab){
-                    indexTab = currIndexTab;
-                    switch (item.getItemId()){
-                        case R.id.navigation_bottom_new:
-                            currIndexTab = NEW_ENTER;
-                            break;
-
-                        case R.id.navigation_bottom_history:
-                            currIndexTab = HISTORY_CHECKIN;
-                            break;
-
-                        default:
-                            currIndexTab = MESSAGE;
-                            break;
-                    }
                     addFragment();
                 }
                 return true;

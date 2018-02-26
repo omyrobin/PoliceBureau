@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    card_view:cardCornerRadius="5dp"
+    card_view:cardElevation="5dp"
+    android:layout_margin="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/iv_newenter_userpic"
+            android:scaleType="centerCrop"
+            android:layout_width="52dp"
+            android:layout_height="75dp" />
+
+        <TextView
+            android:layout_toRightOf="@id/iv_newenter_userpic"
+            android:id="@+id/tv_newenter_userbase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            tools:text="YABUKI SHINGO / 男" />
+
+        <LinearLayout
+            android:id="@+id/ll_newenter_userinfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/tv_newenter_userbase"
+            android:layout_below="@id/tv_newenter_userbase"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tv_newenter_birthday"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                tools:text="1987-02-10" />
+
+            <TextView
+                android:id="@+id/tv_newenter_country"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                tools:text="美国" />
+
+            <TextView
+                android:id="@+id/tv_newenter_birthplace"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                tools:text="加州" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_newenter_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/tv_newenter_userbase"
+            android:layout_below="@id/ll_newenter_userinfo"
+            android:layout_marginTop="10dp"
+            tools:text="18665858059" />
+
+        <TextView
+            android:id="@+id/tv_newenter_credential"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_newenter_userpic"
+            android:layout_marginTop="10dp"
+            tools:text="普通护照号：HASIFHIFOWEHOXX123" />
+
+        <TextView
+            android:id="@+id/tv_newenter_entry_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_newenter_credential"
+            android:layout_marginTop="10dp"
+            tools:text="入境时间：2018-02-27" />
+
+        <TextView
+            android:id="@+id/tv_newenter_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@id/tv_newenter_userbase"
+            tools:text="未审核" />
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

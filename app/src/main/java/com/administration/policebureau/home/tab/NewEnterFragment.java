@@ -18,6 +18,7 @@ import com.administration.policebureau.adapter.NewEnterAdapter;
 import com.administration.policebureau.api.GetService;
 import com.administration.policebureau.bean.BaseResponse;
 import com.administration.policebureau.bean.CheckInEntity;
+import com.administration.policebureau.bean.NewEntryEntity;
 import com.administration.policebureau.http.ProgressSubscriber;
 import com.administration.policebureau.http.RetrofitClient;
 import com.administration.policebureau.http.RetrofitManager;
@@ -102,6 +103,9 @@ public class NewEnterFragment extends BaseFragment {
     }
 
     private void initAdapter(CheckInEntity checkInEntity){
+//        for(int i=0; i<10; i++){
+//            checkInEntity.getData().add(new NewEntryEntity());
+//        }
         NewEnterAdapter adapter = new NewEnterAdapter(getActivity(),checkInEntity);
         rv_newenter.setAdapter(adapter);
     }
