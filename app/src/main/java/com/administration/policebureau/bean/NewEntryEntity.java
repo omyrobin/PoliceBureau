@@ -1,10 +1,12 @@
 package com.administration.policebureau.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by omyrobin on 2018/2/1.
  */
 
-public class NewEntryEntity {
+public class NewEntryEntity implements Serializable{
 
     /**
      * id : 1

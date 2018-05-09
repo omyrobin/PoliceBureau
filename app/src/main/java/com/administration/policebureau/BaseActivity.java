@@ -30,6 +30,7 @@ public abstract class BaseActivity extends AppCompatActivity{
 //        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(getLayoutId(savedInstanceState));
         ButterKnife.bind(this);
+        getExtra();
         initializeToolbar();
         initializeActivity();
     }
@@ -39,6 +40,10 @@ public abstract class BaseActivity extends AppCompatActivity{
     protected abstract void initializeToolbar();
 
     protected abstract void initializeActivity();
+
+    protected void getExtra(){
+
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

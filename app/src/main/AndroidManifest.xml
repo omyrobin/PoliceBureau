@@ -20,7 +20,17 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".home.HomeActivity"/>s
+        <activity
+            android:name=".home.HomeActivity"
+            android:launchMode="singleTask"/>
+
+        <activity
+            android:name=".information.InfomationActivity"
+            android:launchMode="singleTop"/>
+
+        <activity
+            android:name=".bigimg.BigImgActivity"
+            android:launchMode="singleTop"/>
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 package com.administration.policebureau.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import com.administration.policebureau.R;
 import com.administration.policebureau.bean.CheckInEntity;
 import com.administration.policebureau.bean.NewEntryEntity;
+import com.administration.policebureau.information.InfomationActivity;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
@@ -47,7 +49,15 @@ public class NewEnterAdapter extends RecyclerView.Adapter{
 
             default:
                 itemView = inflater.inflate(R.layout.item_newenter_data, parent ,false);
-                return new ItemViewHolder(itemView);
+                final ItemViewHolder holder = new ItemViewHolder(itemView);
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        NewEntryEntity newEntryEntity = list.get(holder.getLayoutPosition());
+                        InfomationActivity.newInstance(context, newEntryEntity);
+                    }
+                });
+                return holder;
         }
     }
 

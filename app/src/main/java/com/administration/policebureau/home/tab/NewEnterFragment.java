@@ -103,9 +103,6 @@ public class NewEnterFragment extends BaseFragment {
     }
 
     private void initAdapter(CheckInEntity checkInEntity){
-//        for(int i=0; i<10; i++){
-//            checkInEntity.getData().add(new NewEntryEntity());
-//        }
         NewEnterAdapter adapter = new NewEnterAdapter(getActivity(),checkInEntity);
         rv_newenter.setAdapter(adapter);
     }
