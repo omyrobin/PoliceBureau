@@ -22,8 +22,7 @@ import com.administration.policebureau.http.RetrofitClient;
 import com.administration.policebureau.http.RetrofitManager;
 
 import butterknife.BindView;
-import retrofit2.Response;
-import rx.Observable;
+import io.reactivex.Observable;
 
 /**
  * Created by omyrobin on 2018/1/31.
@@ -83,16 +82,18 @@ public class MessageFragment extends BaseFragment {
 
     private void requestData(){
         GetService getService = RetrofitManager.getRetrofit().create(GetService.class);
-        Observable<Response<BaseResponse<MessageListEntity>>> ob = getService.getMessage("Bearer "+ App.getInstance().getToken());
+        Observable<BaseResponse<MessageListEntity>> ob = getService.getMessage();
         RetrofitClient.client().request(ob, new ProgressSubscriber<MessageListEntity>(getActivity()) {
             @Override
             protected void onSuccess(MessageListEntity messageListEntity) {
                 Log.i(TAG, "数据长度是：  " + messageListEntity.getData().size());
+                swl_message.setRefreshing(false);
             }
 
             @Override
             protected void onFailure(String message) {
                 Log.i(TAG, message);
+                swl_message.setRefreshing(false);
             }
         });
     }

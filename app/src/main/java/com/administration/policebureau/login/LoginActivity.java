@@ -24,8 +24,7 @@ import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import retrofit2.Response;
-import rx.Observable;
+import io.reactivex.Observable;
 
 public class LoginActivity extends BaseActivity{
     @BindView(R.id.toolbar)
@@ -72,7 +71,7 @@ public class LoginActivity extends BaseActivity{
     private void login(HashMap<String,String> map){
 
         PostService postService = RetrofitManager.getRetrofit().create(PostService.class);
-        Observable<Response<BaseResponse<UserEntity>>> ob = postService.registerUser(map);
+        Observable<BaseResponse<UserEntity>> ob = postService.registerUser(map);
         RetrofitClient.client().request(ob, new ProgressSubscriber<UserEntity>(this) {
             @Override
             protected void onSuccess(UserEntity userEntity) {

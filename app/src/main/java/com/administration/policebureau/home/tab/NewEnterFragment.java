@@ -24,8 +24,7 @@ import com.administration.policebureau.http.RetrofitClient;
 import com.administration.policebureau.http.RetrofitManager;
 
 import butterknife.BindView;
-import retrofit2.Response;
-import rx.Observable;
+import io.reactivex.Observable;
 
 /**
  * Created by omyrobin on 2018/1/31.
@@ -85,7 +84,7 @@ public class NewEnterFragment extends BaseFragment {
 
     private void initData(){
         GetService getService = RetrofitManager.getRetrofit().create(GetService.class);
-        Observable<Response<BaseResponse<CheckInEntity>>> ob = getService.getCheckInList("Bearer "+App.getInstance().getToken());
+        Observable<BaseResponse<CheckInEntity>> ob = getService.getCheckInList();
         RetrofitClient.client().request(ob, new ProgressSubscriber<CheckInEntity>(getActivity()) {
             @Override
             protected void onSuccess(CheckInEntity checkInEntity) {

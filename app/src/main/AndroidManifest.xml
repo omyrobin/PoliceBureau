@@ -3,6 +3,7 @@
     package="com.administration.policebureau" >
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -22,7 +23,8 @@
 
         <activity
             android:name=".home.HomeActivity"
-            android:launchMode="singleTask"/>
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
 
         <activity
             android:name=".information.InfomationActivity"

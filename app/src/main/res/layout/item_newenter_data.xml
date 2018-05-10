@@ -28,62 +28,77 @@
             android:layout_marginLeft="15dp"
             tools:text="YABUKI SHINGO / 男" />
 
-        <LinearLayout
-            android:id="@+id/ll_newenter_userinfo"
+        <!--<LinearLayout-->
+            <!--android:visibility="gone"-->
+            <!--android:id="@+id/ll_newenter_userinfo"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignLeft="@id/tv_newenter_userbase"-->
+            <!--android:layout_below="@id/tv_newenter_userbase"-->
+            <!--android:orientation="horizontal">-->
+            <!--<TextView-->
+                <!--android:id="@+id/tv_newenter_birthday"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--tools:text="1987-02-10" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/tv_newenter_country"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--tools:text="美国" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/tv_newenter_birthplace"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--tools:text="加州" />-->
+        <!--</LinearLayout>-->
+
+        <!--<TextView-->
+            <!--android:visibility="gone"-->
+            <!--android:id="@+id/tv_newenter_phone"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignLeft="@id/tv_newenter_userbase"-->
+            <!--android:layout_below="@id/ll_newenter_userinfo"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--tools:text="18665858059" />-->
+
+        <TextView
+            android:id="@+id/tv_credential"
+            android:layout_below="@id/tv_newenter_userbase"
+            android:layout_alignLeft="@id/tv_newenter_userbase"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/tv_newenter_userbase"
-            android:layout_below="@id/tv_newenter_userbase"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/tv_newenter_birthday"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                tools:text="1987-02-10" />
-
-            <TextView
-                android:id="@+id/tv_newenter_country"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                tools:text="美国" />
-
-            <TextView
-                android:id="@+id/tv_newenter_birthplace"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                tools:text="加州" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/tv_newenter_phone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/tv_newenter_userbase"
-            android:layout_below="@id/ll_newenter_userinfo"
             android:layout_marginTop="10dp"
-            tools:text="18665858059" />
+            android:lines="1"
+            android:ellipsize="end"
+            tools:text="证件类型：台湾居民来往大陆通行证(一次有效)" />
 
         <TextView
-            android:id="@+id/tv_newenter_credential"
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_credential_number"
+            android:layout_below="@id/tv_credential"
+            android:layout_alignLeft="@id/tv_newenter_userbase"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/iv_newenter_userpic"
             android:layout_marginTop="10dp"
             tools:text="普通护照号：HASIFHIFOWEHOXX123" />
 
-        <TextView
-            android:id="@+id/tv_newenter_entry_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_newenter_credential"
-            android:layout_marginTop="10dp"
-            tools:text="入境时间：2018-02-27" />
+        <!--<TextView-->
+            <!--android:visibility="gone"-->
+            <!--android:id="@+id/tv_newenter_entry_date"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@id/tv_newenter_credential"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--tools:text="入境时间：2018-02-27" />-->
 
         <TextView
             android:id="@+id/tv_newenter_status"
@@ -92,5 +107,14 @@
             android:layout_alignParentRight="true"
             android:layout_alignTop="@id/tv_newenter_userbase"
             tools:text="未审核" />
+
+        <TextView
+            android:id="@+id/tv_last_submit_place"
+            android:lineSpacingMultiplier="1.4"
+            android:layout_marginTop="10dp"
+            android:text="此人于2018-1-25 09:12:23 在北京市朝阳区东北北桥久隆百货东方科技园B座1号楼1093室附近提交了审核资料"
+            android:layout_below="@id/iv_newenter_userpic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </RelativeLayout>
 </android.support.v7.widget.CardView>

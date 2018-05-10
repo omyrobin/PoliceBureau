@@ -2,20 +2,22 @@ package com.administration.policebureau.api;
 
 import com.administration.policebureau.bean.BaseResponse;
 import com.administration.policebureau.bean.CheckInEntity;
-import com.administration.policebureau.bean.MessageInfoEntity;
 import com.administration.policebureau.bean.MessageListEntity;
 
+import java.util.HashMap;
 
-import retrofit2.Response;
+import io.reactivex.Observable;
 import retrofit2.http.GET;
-import retrofit2.http.Header;
-import rx.Observable;
+import retrofit2.http.QueryMap;
 
 public interface GetService {
 
     @GET("registrant")
-    Observable<Response<BaseResponse<CheckInEntity>>> getCheckInList(@Header("Authorization") String token);
+    Observable<BaseResponse<CheckInEntity>> getCheckInList();
 
     @GET("message")
-    Observable<Response<BaseResponse<MessageListEntity>>> getMessage(@Header("Authorization") String token);
+    Observable<BaseResponse<MessageListEntity>> getMessage();
+
+    @GET("registrant")
+    Observable<BaseResponse<CheckInEntity>> getCheckInById(@QueryMap HashMap<String, String> map);
 }

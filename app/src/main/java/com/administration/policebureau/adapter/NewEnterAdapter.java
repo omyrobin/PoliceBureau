@@ -68,12 +68,13 @@ public class NewEnterAdapter extends RecyclerView.Adapter{
             NewEntryEntity entity = list.get(position);
             Glide.with(context).load(entity.getAvatar()).into(((ItemViewHolder)holder).iv_userpic);
             ((ItemViewHolder)holder).tv_userbase.setText(entity.getFirstname() + " "+ entity.getLastname() + " / " +entity.getGender() );
-            ((ItemViewHolder)holder).tv_credential.setText(entity.getCredential_type() + " : "+ entity.getCredential());
-            ((ItemViewHolder)holder).tv_birthday.setText(entity.getBirthday());
-            ((ItemViewHolder)holder).tv_country.setText(entity.getCountry());
-            ((ItemViewHolder)holder).tv_birthplace.setText(entity.getBirthplace());
-            ((ItemViewHolder)holder).tv_phone.setText("手机号码 : " + entity.getPhone());
-            ((ItemViewHolder)holder).tv_entry_date.setText("入境时间 ： "+ entity.getEntry_date());
+            ((ItemViewHolder)holder).tv_credential.setText("证件类型：" + entity.getCredential_type());
+            ((ItemViewHolder)holder).tv_credential_number.setText("证件号码：" + entity.getCredential());
+//            ((ItemViewHolder)holder).tv_birthday.setText(entity.getBirthday());
+//            ((ItemViewHolder)holder).tv_country.setText(entity.getCountry());
+//            ((ItemViewHolder)holder).tv_birthplace.setText(entity.getBirthplace());
+//            ((ItemViewHolder)holder).tv_phone.setText("手机号码 : " + entity.getPhone());
+//            ((ItemViewHolder)holder).tv_entry_date.setText("入境时间 ： "+ entity.getEntry_date());
             ((ItemViewHolder)holder).tv_status.setText(entity.getStatus());
         }
     }
@@ -101,18 +102,22 @@ public class NewEnterAdapter extends RecyclerView.Adapter{
         ImageView iv_userpic;
         @BindView(R.id.tv_newenter_userbase)
         TextView tv_userbase;
-        @BindView(R.id.tv_newenter_credential)
+        @BindView(R.id.tv_credential)
         TextView tv_credential;
-        @BindView(R.id.tv_newenter_birthday)
-        TextView tv_birthday;
-        @BindView(R.id.tv_newenter_country)
-        TextView tv_country;
-        @BindView(R.id.tv_newenter_birthplace)
-        TextView tv_birthplace;
-        @BindView(R.id.tv_newenter_phone)
-        TextView tv_phone;
-        @BindView(R.id.tv_newenter_entry_date)
-        TextView tv_entry_date;
+        @BindView(R.id.tv_credential_number)
+        TextView tv_credential_number;
+        @BindView(R.id.tv_last_submit_place)
+        TextView tv_last_submit_place;
+//        @BindView(R.id.tv_newenter_birthday)
+//        TextView tv_birthday;
+//        @BindView(R.id.tv_newenter_country)
+//        TextView tv_country;
+//        @BindView(R.id.tv_newenter_birthplace)
+//        TextView tv_birthplace;
+//        @BindView(R.id.tv_newenter_phone)
+//        TextView tv_phone;
+//        @BindView(R.id.tv_newenter_entry_date)
+//        TextView tv_entry_date;
         @BindView(R.id.tv_newenter_status)
         TextView tv_status;
 

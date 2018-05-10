@@ -3,9 +3,11 @@ package com.administration.policebureau.http;
 
 import com.administration.policebureau.bean.BaseResponse;
 
+import io.reactivex.Observable;
+import io.reactivex.ObservableTransformer;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import retrofit2.Response;
-import rx.Observable;
-import rx.functions.Action0;
 
 /**
  * Created by omyrobin on 2017/4/13.
@@ -26,23 +28,16 @@ public class RetrofitClient {
         return client;
     }
 
-    public <T> void request(Observable<Response<BaseResponse<T>>> ob, final ProgressSubscriber<T> subscriber){
+    public <T> void request(Observable<BaseResponse<T>> ob, final ProgressSubscriber<T> subscriber){
         //数据预处理
-        Observable.Transformer<Response<BaseResponse<T>>, T> result = ResponseHelper.transformerResult();
+        ObservableTransformer<BaseResponse<T>, T> result = ResponseHelper.transformerResult();
         ob.compose(result)
-                .doOnSubscribe(new Action0() {
+                .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
-                    public void call() {
+                    public void accept(Disposable disposable) throws Exception {
                         subscriber.showProgressDialog();
                     }
                 })
                 .subscribe(subscriber);
     }
-
-    public <T> void requestString(Observable<Response<T>> ob, final ProgressSubscriber<T> subscriber){
-        //数据预处理
-        Observable.Transformer<Response<T>, T> result = ResponseHelper.transformerResult2();
-        ob.compose(result).subscribe(subscriber);
-    }
-
 }
