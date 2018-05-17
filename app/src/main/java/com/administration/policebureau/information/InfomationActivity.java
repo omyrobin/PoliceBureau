@@ -4,17 +4,23 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.administration.policebureau.BaseActivity;
 import com.administration.policebureau.R;
+import com.administration.policebureau.adapter.PhotosAdapter;
 import com.administration.policebureau.bean.NewEntryEntity;
 import com.administration.policebureau.bigimg.BigImgActivity;
 import com.bumptech.glide.Glide;
+
+import java.util.Arrays;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -23,7 +29,7 @@ import butterknife.OnClick;
  * Created by wubo on 2018/5/8.
  */
 
-public class InfomationActivity extends BaseActivity {
+public class InfomationActivity extends BaseActivity implements PhotosAdapter.OnRvItemClickListener {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -107,7 +113,7 @@ public class InfomationActivity extends BaseActivity {
     TextView landlordCountryTv;
     //房主身份证号
     @BindView(R.id.tv_landlord_identity)
-    TextView landlordIdentityTv;
+    TextView landlordIdinfoEntityTv;
     //房主中文姓名
     @BindView(R.id.tv_landlord_name)
     TextView landlordNameTv;
@@ -118,11 +124,11 @@ public class InfomationActivity extends BaseActivity {
     @BindView(R.id.tv_landlord_phone)
     TextView landlordPhoneTv;
 
-    private NewEntryEntity entity;
+    private List<String> photos;
 
-    public static void newInstance(Context context, NewEntryEntity entity){
+    public static void newInstance(Context context, NewEntryEntity infoEntity){
         Intent intent = new Intent(context, InfomationActivity.class);
-        intent.putExtra("entity", entity);
+        intent.putExtra("infoEntity", infoEntity);
         context.startActivity(intent);
     }
 
@@ -134,7 +140,7 @@ public class InfomationActivity extends BaseActivity {
     @Override
     protected void getExtra() {
         Intent intent = getIntent();
-        entity = intent!=null ? (NewEntryEntity) intent.getSerializableExtra("entity") : null;
+        infoEntity = intent!=null ? (NewEntryEntity) intent.getSerializableExtra("infoEntity") : null;
     }
 
     @Override
@@ -149,33 +155,58 @@ public class InfomationActivity extends BaseActivity {
 
     @Override
     protected void initializeActivity() {
-        if(entity != null){
+        initInfo();
+    }
+
+    private void initInfo(){
+        if(infoEntity != null){
             //审核状态
-            checkStateTv.setText(entity.getStatus());
+            checkStateTv.setText(infoEntity.getStatus());
             //基本信息
-            Glide.with(this).load(entity.getAvatar()).into(avataImg);
-            Glide.with(this).load(entity.getPassport_image()).into(passportInfoImgs);
-            countryTv.setText(entity.getCountry());
-            credentialTypeTv.setText(entity.getCredential_type());
-            credentialTv.setText(entity.getCredential());
-            firstnameTv.setText(entity.getFirstname());
-            lastnameTv.setText(entity.getLastname());
-            genderTv.setText(entity.getGender());
-            birthplaceTv.setText(entity.getBirthplace());
-            occupationTv.setText(entity.getOccupation());
-            workingOrganizationTv.setText(entity.getWorking_organization());
-            emergencyContactTv.setText(entity.getEmergency_contact());
-            emergencyPhoneTv.setText(entity.getEmergency_phone());
+            Glide.with(this).load(infoEntity.getAvatar()).into(avataImg);
+            Glide.with(this).load(infoEntity.getPassport_image()).into(passportInfoImgs);
+            countryTv.setText(infoEntity.getCountry());
+            credentialTypeTv.setText(infoEntity.getCredential_type());
+            credentialTv.setText(infoEntity.getCredential());
+            firstnameTv.setText(infoEntity.getFirstname());
+            lastnameTv.setText(infoEntity.getLastname());
+            genderTv.setText(infoEntity.getGender());
+            birthplaceTv.setText(infoEntity.getBirthplace());
+            occupationTv.setText(infoEntity.getOccupation());
+            workingOrganizationTv.setText(infoEntity.getWorking_organization());
+            emergencyContactTv.setText(infoEntity.getEmergency_contact());
+            emergencyPhoneTv.setText(infoEntity.getEmergency_phone());
             //入境及签证(注)信息
-            Glide.with(this).load(entity.getEnter_image()).into(entryPageImg);
-            Glide.with(this).load(entity.getVisa_image()).into(visaPageImg);
+            Glide.with(this).load(infoEntity.getEnter_image()).into(entryPageImg);
+            Glide.with(this).load(infoEntity.getVisa_image()).into(visaPageImg);
             //住宿信息
-            landlordCountryTv.setText(entity.getLandlord_country());
-            landlordIdentityTv.setText(entity.getLandlord_identity());
-            landlordNameTv.setText(entity.getLandlord_name());
-            landlordGenderTv.setText(entity.getLandlord_gender());
-            landlordPhoneTv.setText(entity.getEmergency_phone());
+            houseAddressTv.setText(infoEntity.getHouse_address());
+            if(!TextUtils.isEmpty(infoEntity.getLandlord_identity_image())){
+                houseHaveLayout.setVisibility(View.VISIBLE);
+                houseNotHaveLayout.setVisibility(View.GONE);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+                linearLayoutManager.setOrientation(linearLayoutManager.HORIZONTAL);
+                contractOfTenancyRv.setLayoutManager(linearLayoutManager);
+                Glide.with(this).load(infoEntity.getLandlord_identity_image()).into(landlordIdentityImg);
+                String [] strings =  infoEntity.getHouse_contract_image().split(",");
+                if(strings != null && strings.length>0){
+                    photos = Arrays.asList(strings);
+                    PhotosAdapter adapter = new PhotosAdapter(this,photos,this);
+                    contractOfTenancyRv.setAdapter(adapter);
+                }
+            }else{
+                houseHaveLayout.setVisibility(View.GONE);
+                houseNotHaveLayout.setVisibility(View.VISIBLE);
+                landlordCountryTv.setText(infoEntity.getLandlord_country());
+                landlordIdinfoEntityTv.setText(infoEntity.getLandlord_identity_image());
+                landlordNameTv.setText(infoEntity.getLandlord_name());
+                landlordGenderTv.setText(infoEntity.getLandlord_gender());
+                landlordPhoneTv.setText(infoEntity.getEmergency_phone());
+            }
         }
+    }
+
+    private void changeState(){
 
     }
 
@@ -184,25 +215,30 @@ public class InfomationActivity extends BaseActivity {
         String url;
         switch (v.getId()){
             case R.id.img_avata:
-                url = entity.getAvatar();
+                url = infoEntity.getAvatar();
                 break;
 
             case R.id.img_passport_info:
-                url = entity.getPassport_image();
+                url = infoEntity.getPassport_image();
                 break;
 
             case R.id.img_entry_page:
-                url = entity.getEnter_image();
+                url = infoEntity.getEnter_image();
                 break;
 
             case R.id.img_visa_page:
-                url = entity.getVisa_image();
+                url = infoEntity.getVisa_image();
                 break;
 
             default:
-                url = entity.getLandlord_identity_image();
+                url = infoEntity.getLandlord_identity_image();
                 break;
         }
         BigImgActivity.newInstance(this, url);
+    }
+
+    @Override
+    public void onClick(int position) {
+        BigImgActivity.newInstance(this, photos.get(position));
     }
 }

@@ -6,10 +6,16 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.Window;
 
+import com.administration.policebureau.bean.NewEntryEntity;
 import com.administration.policebureau.login.LoginActivity;
+import com.google.gson.Gson;
+
+import java.util.HashMap;
 
 import butterknife.ButterKnife;
 
@@ -19,15 +25,16 @@ import butterknife.ButterKnife;
 
 public abstract class BaseActivity extends AppCompatActivity{
 
+    protected NewEntryEntity infoEntity;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 //        if(App.mAppStatus == -1){
 //            protectApp();
 //        }
-//        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(getLayoutId(savedInstanceState));
         ButterKnife.bind(this);
         getExtra();
@@ -87,5 +94,61 @@ public abstract class BaseActivity extends AppCompatActivity{
         return R.anim.slide_right_out;
     }
 
+    protected HashMap<String,Object> getRequestParams() {
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("avatar", infoEntity.getAvatar());
+        params.put("passport_image", infoEntity.getPassport_image());
+        params.put("country", infoEntity.getCountry());
+        params.put("credential", infoEntity.getCredential());
+        params.put("credential_type", infoEntity.getCredential_type());
+//        params.put("credential_expired_date",infoEntity.getCredential_expired_date());
+//        params.put("person_type",infoEntity.getPerson_type());
+//        params.put("person_area_type",infoEntity.getPerson_area_type());
+        params.put("firstname", infoEntity.getFirstname());
+        params.put("lastname", infoEntity.getLastname());
+//        params.put("chinese_name",infoEntity.getChinese_name());
+        params.put("gender", infoEntity.getGender());
+//        params.put("birthday",infoEntity.getBirthday());
+        params.put("birthplace", infoEntity.getBirthplace());
+        if (!TextUtils.isEmpty(infoEntity.getOccupation()))
+            params.put("occupation", infoEntity.getOccupation());
+        if (!TextUtils.isEmpty(infoEntity.getWorking_organization()))
+            params.put("working_organization", infoEntity.getWorking_organization());
+//        params.put("phone",infoEntity.getPhone());
+        params.put("emergency_contact", infoEntity.getEmergency_contact());
+        params.put("emergency_phone", infoEntity.getEmergency_phone());
+
+        if (!"1".equals(infoEntity.getCredential_type()) && !"7".equals(infoEntity.getCredential_type()) && !"11".equals(infoEntity.getCredential_type())) {
+            params.put("enter_image", infoEntity.getEnter_image());
+            params.put("visa_image", infoEntity.getVisa_image());
+//            params.put("visa_type",infoEntity.getVisa_type());
+//            params.put("visa_expired_date",infoEntity.getVisa_expired_date());
+        }
+//        params.put("entry_date",infoEntity.getEntry_date());
+//        params.put("entry_port",infoEntity.getEntry_port());
+//        params.put("stay_reason",infoEntity.getStay_reason());
+//        params.put("stay_expired_date",infoEntity.getStay_expired_date());
+//        params.put("checkout_date",infoEntity.getCheckout_date());
+        params.put("house_address", infoEntity.getHouse_address());
+//        params.put("house_type",infoEntity.getHouse_type());
+        if (App.getInstance().isHave()) {
+//            Gson gson = new Gson();
+//            params.put("landlord_identity_image",infoEntity.getLandlord_identity_image());
+//            Log.i("TAG", gson.toJson(infoEntity.getHouse_contract_image()).toString());
+//            for(int i=0; i<infoEntity.getHouse_contract_image().length; i++){
+//                params.put("house_contract_image"+"["+i+"]",infoEntity.getHouse_contract_image()[i]);
+//            }
+        } else {
+//            params.put("checkin_date",infoEntity.getCheckin_date());
+//            params.put("police_station",infoEntity.getPolice_station());
+//            params.put("community",infoEntity.getCommunity());
+            params.put("landlord_country", infoEntity.getLandlord_country());
+            params.put("landlord_identity", infoEntity.getLandlord_identity());
+            params.put("landlord_name", infoEntity.getLandlord_name());
+            params.put("landlord_gender", infoEntity.getLandlord_gender());
+            params.put("landlord_phone", infoEntity.getLandlord_phone());
+        }
+        return params;
+    }
 
 }

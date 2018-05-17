@@ -15,6 +15,7 @@ public class App extends Application {
     private static App mApp;
     private UserEntity userEntity;
     private String token;
+    private boolean have;
 
     public static App getInstance(){
         return mApp;
@@ -41,5 +42,13 @@ public class App extends Application {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public void setHave(boolean have) {
+        this.have = have;
+    }
+
+    public boolean isHave() {
+        return have;
     }
 }
