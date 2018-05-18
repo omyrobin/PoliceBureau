@@ -31,10 +31,10 @@
             android:layout_height="wrap_content" />
 
         <ImageView
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="5dp"
             android:layout_marginRight="15dp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_youtube_searched_for_black_18dp"
+            android:src="@drawable/ic_search_black_24dp"
             android:layout_width="30dp"
             android:layout_height="30dp" />
 

@@ -70,12 +70,9 @@ public class NewEnterAdapter extends RecyclerView.Adapter{
             ((ItemViewHolder)holder).tv_userbase.setText(entity.getFirstname() + " "+ entity.getLastname() + " / " +entity.getGender() );
             ((ItemViewHolder)holder).tv_credential.setText("证件类型：" + entity.getCredential_type());
             ((ItemViewHolder)holder).tv_credential_number.setText("证件号码：" + entity.getCredential());
-//            ((ItemViewHolder)holder).tv_birthday.setText(entity.getBirthday());
-//            ((ItemViewHolder)holder).tv_country.setText(entity.getCountry());
-//            ((ItemViewHolder)holder).tv_birthplace.setText(entity.getBirthplace());
-//            ((ItemViewHolder)holder).tv_phone.setText("手机号码 : " + entity.getPhone());
-//            ((ItemViewHolder)holder).tv_entry_date.setText("入境时间 ： "+ entity.getEntry_date());
             ((ItemViewHolder)holder).tv_status.setText(entity.getStatus());
+        }else if(type == TYPE_EMPTY){
+            ((EmptyViewHolder)holder).tv_empty_message.setText("当前没有任何新入境人员登记");
         }
     }
 
@@ -90,7 +87,8 @@ public class NewEnterAdapter extends RecyclerView.Adapter{
     }
 
     static class EmptyViewHolder extends RecyclerView.ViewHolder{
-
+        @BindView(R.id.tv_empty_message)
+        TextView tv_empty_message;
         public EmptyViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);

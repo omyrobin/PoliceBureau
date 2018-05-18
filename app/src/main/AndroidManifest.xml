@@ -33,6 +33,10 @@
         <activity
             android:name=".bigimg.BigImgActivity"
             android:launchMode="singleTop"/>
+
+        <activity
+            android:name=".home.tab.message.MessageBoardActivity"
+            android:launchMode="singleTop"/>
     </application>
 
 </manifest>

@@ -234,7 +234,9 @@ public class InfomationActivity extends BaseActivity implements PhotosAdapter.On
                 url = infoEntity.getLandlord_identity_image();
                 break;
         }
-        BigImgActivity.newInstance(this, url);
+        if(!TextUtils.isEmpty(url)){
+            BigImgActivity.newInstance(this, url);
+        }
     }
 
     @Override

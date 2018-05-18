@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.administration.policebureau.App;
 import com.administration.policebureau.BaseFragment;
 import com.administration.policebureau.R;
+import com.administration.policebureau.adapter.MessageAdapter;
 import com.administration.policebureau.api.GetService;
 import com.administration.policebureau.bean.BaseResponse;
 import com.administration.policebureau.bean.MessageListEntity;
@@ -37,6 +38,7 @@ public class MessageFragment extends BaseFragment {
     RecyclerView rv_message;
     @BindView(R.id.swl_message)
     SwipeRefreshLayout swl_message;
+    private MessageAdapter adapter;
     private final String TAG = getClass().getSimpleName();
 
     @Override
@@ -87,6 +89,8 @@ public class MessageFragment extends BaseFragment {
             @Override
             protected void onSuccess(MessageListEntity messageListEntity) {
                 Log.i(TAG, "数据长度是：  " + messageListEntity.getData().size());
+                adapter = new MessageAdapter( messageListEntity.getData());
+                rv_message.setAdapter(adapter);
                 swl_message.setRefreshing(false);
             }
 
