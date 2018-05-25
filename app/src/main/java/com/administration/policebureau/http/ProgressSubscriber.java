@@ -8,13 +8,14 @@ import com.administration.policebureau.App;
 import com.administration.policebureau.R;
 import com.administration.policebureau.util.NetworkUtil;
 
-import rx.Subscriber;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 /**
  * Created by omyrobin on 2017/01/04 15:49.
  */
 
-public  abstract class ProgressSubscriber<T> extends Subscriber<T> implements ProgressCancelListener{
+public abstract class ProgressSubscriber<T> implements ProgressCancelListener, Observer<T> {
 
 
     private ProgressDialog dialogHandler;
@@ -22,6 +23,8 @@ public  abstract class ProgressSubscriber<T> extends Subscriber<T> implements Pr
     private Context context;
 
     private boolean show;
+
+    private Disposable disposable;
 
     public ProgressSubscriber(Context context) {
         this.context = context;
@@ -56,7 +59,12 @@ public  abstract class ProgressSubscriber<T> extends Subscriber<T> implements Pr
     }
 
     @Override
-    public void onCompleted() {
+    public void onSubscribe(Disposable d) {
+        disposable = d;
+    }
+
+    @Override
+    public void onComplete() {
         dismissProgressDialog();
     }
 
@@ -81,8 +89,8 @@ public  abstract class ProgressSubscriber<T> extends Subscriber<T> implements Pr
 
     @Override
     public void onCancelProgress() {
-        if (!this.isUnsubscribed()) {
-            this.unsubscribe();
+        if(disposable.isDisposed()){
+            disposable.dispose();
         }
     }
 

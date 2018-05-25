@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_bottom_new"
+        android:icon="@drawable/ic_assignment_ind_press_24dp"
+        android:title="新入境" />
+    <item
+        android:id="@+id/navigation_bottom_history"
+        android:icon="@drawable/ic_verified_user_press_24dp"
+        android:title="历史登记" />
+    <item
+        android:id="@+id/navigation_bottom_message"
+        android:icon="@drawable/ic_chat_press_24dp"
+        android:title="留言" />
+
+</menu>

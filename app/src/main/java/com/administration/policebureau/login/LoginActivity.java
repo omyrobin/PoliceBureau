@@ -4,16 +4,27 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.administration.policebureau.App;
 import com.administration.policebureau.BaseActivity;
 import com.administration.policebureau.R;
+import com.administration.policebureau.api.PostService;
+import com.administration.policebureau.bean.BaseResponse;
+import com.administration.policebureau.bean.UserEntity;
 import com.administration.policebureau.home.HomeActivity;
+import com.administration.policebureau.http.ProgressSubscriber;
+import com.administration.policebureau.http.RetrofitClient;
+import com.administration.policebureau.http.RetrofitManager;
+
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.Observable;
 
 public class LoginActivity extends BaseActivity{
     @BindView(R.id.toolbar)
@@ -26,6 +37,7 @@ public class LoginActivity extends BaseActivity{
     EditText et_phone_number;
     @BindView(R.id.et_password)
     EditText et_password;
+    private final String TAG = getClass().getSimpleName();
 
     @Override
     protected int getLayoutId(Bundle savedInstanceState) {
@@ -49,12 +61,31 @@ public class LoginActivity extends BaseActivity{
     public void onClick(View view){
         String phoneNumber = et_phone_number.getText().toString();
         String passWord = et_password.getText().toString();
-        login();
+        HashMap<String,String> map = new HashMap<>();
+        map.put("phone", "18665858059");
+        map.put("passport", "111111");
+        map.put("verify_code","123123");
+        login(map);
     }
 
-    private void login(){
-        Intent intent = new Intent(this, HomeActivity.class);
-        startActivity(intent);
+    private void login(HashMap<String,String> map){
+
+        PostService postService = RetrofitManager.getRetrofit().create(PostService.class);
+        Observable<BaseResponse<UserEntity>> ob = postService.registerUser(map);
+        RetrofitClient.client().request(ob, new ProgressSubscriber<UserEntity>(this) {
+            @Override
+            protected void onSuccess(UserEntity userEntity) {
+                Log.i(TAG,userEntity.getToken());
+                App.getInstance().setUserEntity(userEntity);
+                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                startActivity(intent);
+            }
+
+            @Override
+            protected void onFailure(String message) {
+
+            }
+        });
     }
 
 }

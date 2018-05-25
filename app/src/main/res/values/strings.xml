@@ -9,4 +9,215 @@
     <string name="network_is_not_available">网络不可用</string>
     <string name="request_failed">请求失败，请稍后再试...</string>
     <string name="uploading">上传中...</string>
+
+    <string name="select_photo_album">从相册选择</string>
+    <string name="select_take_photo">拍照</string>
+    <string name="select_example_photo">标准照片示例</string>
+    <string name="select_pic">选择图片</string>
+    <string name="cancle">取消</string>
+
+    <string name="registeration">境外人员办理注册登记</string>
+    <string name="check_state_wait">审核状态：等待审核</string>
+    <string name="check_state_reject">审核状态：申请被拒绝</string>
+    <string name="check_state_approve">审核状态：通过</string>
+    <string name="electronic_certificate_download">电子证书可下载</string>
+    <string name="reasons_for_rejection">拒绝理由</string>
+    
+    <string name="check_state">审核状态</string>
+    <string name="submit_check_time">提交审核时间</string>
+    <string name="last_move_place">最后活动地点</string>
+
+    <string name="my_photo">本人照片</string>
+    <string name="passport_photo">护照信息页照片（港澳台通行证）</string>
+    <string name="country">国家 / 地区</string>
+    <string name="not_set">未设置</string>
+    <string name="chinese_name_not_set">港澳台、日本、朝鲜、韩国必填</string>
+    <string name="stay_valid_not_set">早于签证（注）有效期</string>
+    <string name="house_address_not_set">地址详细到门牌号</string>
+    <string name="house_number">门牌号</string>
+    <string name="certificates_type">证件类型</string>
+    <string name="certificates_number">证件号码</string>
+    <string name="validity_certificate">证件有效期</string>
+    <string name="personnel_type">人员类型</string>
+    <string name="personnel_area_type">人员地域类型</string>
+    <string name="last_name">英文姓</string>
+    <string name="first_name">英文名</string>
+    <string name="chinese_name">中文名</string>
+    <string name="gender">性别</string>
+    <string name="date_of_birth">出生日期</string>
+    <string name="place_of_birth">出生地</string>
+    <string name="occupation">职业</string>
+    <string name="working_mechanism">工作机构</string>
+    <string name="my_phone_number">本人联系电话</string>
+    <string name="emergency_contact">紧急联系人姓名</string>
+    <string name="emergency_phone">紧急联系人的联系电话</string>
+
+    <string name="entry_page_photo">入境页照片</string>
+    <string name="visa_photo">签证页照片</string>
+    <string name="visa_note_type">签证（注）种类</string>
+    <string name="visa_note_valid">签证（注）有效期</string>
+    <string name="entry_date">入境日期</string>
+    <string name="entry_port">入境口岸</string>
+    <string name="stay_reason">停留事由</string>
+    <string name="stay_valid">停留有效期</string>
+
+    <string name="check_in_date">入住日期</string>
+    <string name="check_out_date">拟定离开日期</string>
+    <string name="contract_of_tenancy">我有房主身份证和房屋租赁合同</string>
+    <string name="landlord_identity_pic">房主身份证照片</string>
+    <string name="contract_of_tenancy_photo">房屋租赁合同照片</string>
+    <string name="photo_number">%1$d张照片</string>
+    <string name="address">详细地址</string>
+    <string name="police_station">所属派出所</string>
+    <string name="community">所属社区</string>
+    <string name="housing_type">住房种类</string>
+    <string name="landlord_phone_number">房主联系电话</string>
+    <string name="landlord_gender">房主性别</string>
+    <string name="landlord_name">房主中文姓名</string>
+    <string name="landlord_identity">房主身份证号</string>
+    <string name="landlord_country">房主国家 / 地区</string>
+
+    <string name="home">首页</string>
+    <string name="message">消息</string>
+    <string name="my">我的</string>
+
+    <string name="registeration_info">提交登记注册资料</string>
+
+    <string name="passport_number">请输入护照号</string>
+    <string name="code">输入验证码</string>
+    <string name="get_code">获取验证码</string>
+    <string name="register">注册</string>
+    <string name="age_of_16">我不满16周岁</string>
+
+    <string name="date_of_departure">离开日期</string>
+    <string name="reason_for_leaving">离开事由</string>
+    <string name="destination">去往目的地</string>
+
+    <string name="log_out">退出登录</string>
+
+    <string name="foreign_laws">法律法规</string>
+    <string name="leave_message">留言板</string>
+    <string name="fangshan_news">新闻资讯</string>
+    <string name="fangshang_tourist_culture">房山旅游文化</string>
+    <string name="public_notice">公示公告</string>
+    <string name="service_information">服务指南</string>
+    <string name="reminder">温馨提示</string>
+    <string name="more">更多</string>
+
+    <string name="please_select">请选择</string>
+
+    <string name="preview_electronic_certificate">预览电子证书</string>
+    <string name="download">下载</string>
+    <string name="show_back">查看背面</string>
+    <string name="show_front">查看正面</string>
+    <string name="downloading">下载中...</string>
+
+    <string name="base_info">基本信息</string>
+    <string name="visa_note_info">入住及签证（注）信息</string>
+    <string name="hotel_information">住宿信息</string>
+    <string name="completed">（填写完毕）</string>
+    <string name="not_yet_completed">（尚未填写完毕）</string>
+
+    <string name="submit">提交</string>
+    <string name="use">使用</string>
+    <string name="next_table">下一张表</string>
+
+
+    <string name="hint">提示</string>
+    <string name="confirm">确定</string>
+
+    <string name="information_off">信息已核销，请重新提交申请资料</string>
+
+    //我的
+    <string name="registration_information">注册登记资料</string>
+    <string name="write_off_info">信息核销</string>
+    <string name="electronic_certificate">电子证书</string>
+    <string name="language_settings">语言设置</string>
+    <string name="user_feedback">用户反馈</string>
+    <string name="about_us">关于我们</string>
+    <string name="whether_out_of_the_current_account">是否退出当前账户</string>
+    <string name="not_submit_registration">（未提交审核资料）</string>
+    <string name="wait_for_review">（等待审核）</string>
+
+    <string name="no_message">当前无消息</string>
+    <string name="please_wait">请耐心等待审核</string>
+    <string name="no_electronic_certificate">您尚未生成电子证书</string>
+
+    <string name="feedback">反馈</string>
+    <string name="send">发送</string>
+    <string name="send_success">发送成功</string>
+    <string name="send_failure">发送失败</string>
+    <string name="write_off_message">信息核销后，电子证书立即作废，是否进行信息核销</string>
+
+    <string name="last_name_null">英文名不能为空</string>
+    <string name="credential_expired_null">证件有效期不能为空</string>
+    <string name="my_photo_null">本人照片不能为空</string>
+    <string name="passport_image_null">护照信息页照片不能为空</string>
+    <string name="country_null">国家不能为空</string>
+    <string name="credential_type_null">证件类型不能为空</string>
+    <string name="credential_null">证件号码不能为空</string>
+    <string name="gender_null">性别不能为空</string>
+    <string name="birthday_null">出生日期不能为空</string>
+    <string name="birthplace_null">出生地不能为空</string>
+    <string name="occupation_null">职业不能为空</string>
+    <string name="working_organization_null">工作机构不能为空</string>
+    <string name="phone_null">本人联系电话不能为空</string>
+    <string name="emergency_contact_null">紧急联系人姓名不能为空</string>
+    <string name="emergency_phone_null">紧急联系人联系电话不能为空</string>
+
+    <string name="enter_image_null">入境页照片不能为空</string>
+    <string name="visa_image_null">签证页照片不能为空</string>
+    <string name="visa_type_null">签证（注）种类不能为空</string>
+    <string name="visa_expired_null">签证（注）有效期不能为空</string>
+    <string name="entry_date_null">入境日期不能为空</string>
+    <string name="entry_port_null">入境口岸不能为空</string>
+    <string name="stay_reason_null">停留事由不能为空</string>
+
+    <string name="check_in_date_null">入住日期不能为空</string>
+    <string name="check_out_date_null">拟定离开日期不能为空</string>
+    <string name="landlord_identity_pic_null">房主身份证照片不能为空</string>
+    <string name="contract_of_tenancy_photo_null">房屋租赁合同不能为空</string>
+    <string name="address_null">详细地址不能为空</string>
+    <string name="house_typr_null">住房种类不能为空</string>
+    <string name="landlord_country_null">房主国家不能为空</string>
+    <string name="landlord_gender_null">房主性别不能为空</string>
+    <string name="landlord_identity_null">房主身份证号不能为空</string>
+    <string name="landlord_name_null">房主姓名不能为空</string>
+    <string name="landlord_phone_null">房主联系电话不能为空</string>
+
+    <string name="one_more">再按一次退出程序</string>
+    <string name="article_detials">文章详情</string>
+    <string name="have_not_yet_opened">尚未开通短信验证码功能</string>
+    <string name="auto_input">我们将为您自动填入</string>
+    <string name="correct_phone_number">请输入正确的手机号码格式</string>
+    <string name="for_android">房山出入境 v%1$s版 for Android</string>
+    <string name="ownership_of_copyright">房山分局版权所有®\n技术支持单位：北京蓝屿文化传媒有限公司</string>
+    <string name="male">男</string>
+    <string name="female">女</string>
+    <string name="info_succeed">审核资料已提交，请耐心等待工作人员审核</string>
+    <string name="info_falid">提交失败,请检查信息后重试</string>
+    <string name="guest">游客</string>
+    <string name="code_error">验证码错误</string>
+    <string name="code_success">验证码已发送到您的手机，请注意查收</string>
+    <string name="code_failure">验证码发送失败，请稍后重试</string>
+
+    <string name="permission_denied_camera">该功能需要开启相机权限</string>
+    <string name="permission_denied_write">该功能需要开启读写手机存储权限</string>
+    <string name="delete_this_photo">是否删除这张照片</string>
+
+    <string name="update">立即更新</string>
+    <string name="later">以后再说</string>
+    <string name="close">关闭程序</string>
+    <string name="software_version_update">软件版本更新</string>
+    <string name="begin_download">开始下载</string>
+    <string name="download_complete_please_install">下载完成, 请安装！</string>
+    <string name="net_err">网络连接失败！</string>
+    <string name="stop_the_downloading">已停止下载！</string>
+    <string name="continue_to_download">网络连接异常！是否继续下载？</string>
+    <string name="have_the_latest_software_package">有最新的软件包</string>
+    <string name="passport">护照号</string>
+    <string name="autocode">验证码</string>
+    <string name="phone_n">手机号</string>
+
+    <string name="reply">回复</string>
 </resources>
