@@ -48,7 +48,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             case EMPTY_ITEM:
                 itemView =  LayoutInflater.from(parent.getContext()).inflate(R.layout.item_newenter_empty, parent ,false);
-                return new NewEnterAdapter.EmptyViewHolder(itemView);
+                return new EnterAdapter.EmptyViewHolder(itemView);
         }
         return null;
     }

@@ -1,9 +1,11 @@
 package com.administration.policebureau.information;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.administration.policebureau.App;
 import com.administration.policebureau.BaseActivity;
 import com.administration.policebureau.R;
 import com.administration.policebureau.adapter.PhotosAdapter;
@@ -35,6 +38,8 @@ public class InfomationActivity extends BaseActivity implements PhotosAdapter.On
     Toolbar toolbar;
     @BindView(R.id.toolbar_title)
     TextView tv_title;
+    @BindView(R.id.toolbar_action)
+    TextView tv_action;
     //审核状态
     @BindView(R.id.tv_check_state)
     TextView checkStateTv;
@@ -151,6 +156,7 @@ public class InfomationActivity extends BaseActivity implements PhotosAdapter.On
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
         tv_title.setText("登记资料查询");
+        tv_action.setText("审核");
     }
 
     @Override
@@ -162,9 +168,12 @@ public class InfomationActivity extends BaseActivity implements PhotosAdapter.On
         if(infoEntity != null){
             //审核状态
             checkStateTv.setText(infoEntity.getStatus());
+            submitTimeTv.setText(infoEntity.getCreated_at());
+            lastMoveTv.setText(infoEntity.getLocation_address());
             //基本信息
             Glide.with(this).load(infoEntity.getAvatar()).into(avataImg);
             Glide.with(this).load(infoEntity.getPassport_image()).into(passportInfoImgs);
+            phoneNumberTv.setText(infoEntity.getPhone());
             countryTv.setText(infoEntity.getCountry());
             credentialTypeTv.setText(infoEntity.getCredential_type());
             credentialTv.setText(infoEntity.getCredential());
@@ -182,6 +191,7 @@ public class InfomationActivity extends BaseActivity implements PhotosAdapter.On
             //住宿信息
             houseAddressTv.setText(infoEntity.getHouse_address());
             if(!TextUtils.isEmpty(infoEntity.getLandlord_identity_image())){
+                App.getInstance().setHave(true);
                 houseHaveLayout.setVisibility(View.VISIBLE);
                 houseNotHaveLayout.setVisibility(View.GONE);
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -195,6 +205,7 @@ public class InfomationActivity extends BaseActivity implements PhotosAdapter.On
                     contractOfTenancyRv.setAdapter(adapter);
                 }
             }else{
+                App.getInstance().setHave(false);
                 houseHaveLayout.setVisibility(View.GONE);
                 houseNotHaveLayout.setVisibility(View.VISIBLE);
                 landlordCountryTv.setText(infoEntity.getLandlord_country());
@@ -206,8 +217,9 @@ public class InfomationActivity extends BaseActivity implements PhotosAdapter.On
         }
     }
 
-    private void changeState(){
-
+    @OnClick(R.id.toolbar_action)
+    public void onAction(){
+        checkState();
     }
 
     @OnClick({R.id.img_avata, R.id.img_passport_info, R.id.img_entry_page, R.id.img_visa_page,R.id.img_landlord_identity})
@@ -242,5 +254,21 @@ public class InfomationActivity extends BaseActivity implements PhotosAdapter.On
     @Override
     public void onClick(int position) {
         BigImgActivity.newInstance(this, photos.get(position));
+    }
+
+    private void checkState(){
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle("提示")
+                .setMessage("是否审核通过当前用户资料")
+                .setPositiveButton("通过", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        registrationInfoAgain(infoEntity.getId());
+                    }
+                })
+                .setNegativeButton("取消", null)
+                .create();
+
+        dialog.show();
     }
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -17,6 +18,8 @@ import android.widget.Toast;
 
 import com.administration.policebureau.BaseFragment;
 import com.administration.policebureau.R;
+import com.administration.policebureau.adapter.EnterAdapter;
+import com.administration.policebureau.adapter.EnterAdapter;
 import com.administration.policebureau.api.GetService;
 import com.administration.policebureau.bean.BaseResponse;
 import com.administration.policebureau.bean.CheckInEntity;
@@ -62,7 +65,8 @@ public class HistoryCheckInFragment extends BaseFragment {
 
     @Override
     protected void initializeFragment() {
-
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        rv_historycheckin.setLayoutManager(linearLayoutManager);
     }
 
     @OnEditorAction(R.id.et_history_search)
@@ -81,6 +85,11 @@ public class HistoryCheckInFragment extends BaseFragment {
         return false;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
     private void closeKeyboard(){
         InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         //如果开启
@@ -97,6 +106,7 @@ public class HistoryCheckInFragment extends BaseFragment {
             @Override
             protected void onSuccess(CheckInEntity checkInEntity) {
                 Log.i(TAG, "数据长度是：  " + checkInEntity.getData().size());
+                initAdapter(checkInEntity);
             }
 
             @Override
@@ -114,5 +124,10 @@ public class HistoryCheckInFragment extends BaseFragment {
         m = p.matcher(str);
         b = m.matches();
         return b;
+    }
+
+    private void initAdapter(CheckInEntity checkInEntity){
+        EnterAdapter adapter = new EnterAdapter(getActivity(),checkInEntity);
+        rv_historycheckin.setAdapter(adapter);
     }
 }

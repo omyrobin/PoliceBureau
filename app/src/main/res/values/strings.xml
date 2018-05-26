@@ -220,4 +220,5 @@
     <string name="phone_n">手机号</string>
 
     <string name="reply">回复</string>
+    <string name="location">此人于%1$s 在%2$s附近提交了审核资料</string>
 </resources>

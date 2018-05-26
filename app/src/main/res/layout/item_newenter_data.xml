@@ -112,7 +112,7 @@
             android:id="@+id/tv_last_submit_place"
             android:lineSpacingMultiplier="1.4"
             android:layout_marginTop="10dp"
-            android:text="此人于2018-1-25 09:12:23 在北京市朝阳区东北北桥久隆百货东方科技园B座1号楼1093室附近提交了审核资料"
+            android:text="@string/location"
             android:layout_below="@id/iv_newenter_userpic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

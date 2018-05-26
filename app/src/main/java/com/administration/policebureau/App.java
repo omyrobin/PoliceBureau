@@ -2,6 +2,7 @@ package com.administration.policebureau;
 
 import android.app.Application;
 
+import com.administration.policebureau.bean.NewEntryEntity;
 import com.administration.policebureau.bean.UserEntity;
 
 /**
@@ -14,6 +15,7 @@ public class App extends Application {
     public static int mAppStatus = -1;
     private static App mApp;
     private UserEntity userEntity;
+    private NewEntryEntity infoEntity;
     private String token;
     private boolean have;
 
@@ -35,6 +37,15 @@ public class App extends Application {
         this.userEntity = userEntity;
         setToken(userEntity.getToken());
     }
+
+    public NewEntryEntity getInfoEntity() {
+        return infoEntity;
+    }
+
+    public void setInfoEntity(NewEntryEntity infoEntity) {
+        this.infoEntity = infoEntity;
+    }
+
 
     public String getToken() {
         return token;

@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.administration.policebureau.App;
 import com.administration.policebureau.BaseFragment;
 import com.administration.policebureau.R;
-import com.administration.policebureau.adapter.NewEnterAdapter;
+import com.administration.policebureau.adapter.EnterAdapter;
 import com.administration.policebureau.api.GetService;
 import com.administration.policebureau.bean.BaseResponse;
 import com.administration.policebureau.bean.CheckInEntity;
@@ -62,13 +62,6 @@ public class NewEnterFragment extends BaseFragment {
 
     private void initSwipeRefreshLayout(){
         swl_newenter.setColorSchemeResources(new int[]{R.color.colorPrimary, R.color.colorPrimary});
-        swl_newenter.post(new Runnable() {
-            @Override
-            public void run() {
-                swl_newenter.setRefreshing(true);
-                initData();
-            }
-        });
         swl_newenter.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -102,7 +95,19 @@ public class NewEnterFragment extends BaseFragment {
     }
 
     private void initAdapter(CheckInEntity checkInEntity){
-        NewEnterAdapter adapter = new NewEnterAdapter(getActivity(),checkInEntity);
+        EnterAdapter adapter = new EnterAdapter(getActivity(),checkInEntity);
         rv_newenter.setAdapter(adapter);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        swl_newenter.post(new Runnable() {
+            @Override
+            public void run() {
+                swl_newenter.setRefreshing(true);
+                initData();
+            }
+        });
     }
 }

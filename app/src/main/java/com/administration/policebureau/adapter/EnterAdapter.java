@@ -24,7 +24,7 @@ import butterknife.ButterKnife;
  * Created by omyrobin on 2018/2/1.
  */
 
-public class NewEnterAdapter extends RecyclerView.Adapter{
+public class EnterAdapter extends RecyclerView.Adapter{
     private static final int TYPE_EMPTY = 0;
     private static final int TYPE_ITEM = 1;
     private Context context;
@@ -32,7 +32,7 @@ public class NewEnterAdapter extends RecyclerView.Adapter{
     private List<NewEntryEntity> list;
     private LayoutInflater inflater;
 
-    public NewEnterAdapter(Context context, CheckInEntity checkInEntity) {
+    public EnterAdapter(Context context, CheckInEntity checkInEntity) {
         this.context = context;
         this.checkInEntity = checkInEntity;
         list = checkInEntity.getData();
@@ -70,6 +70,7 @@ public class NewEnterAdapter extends RecyclerView.Adapter{
             ((ItemViewHolder)holder).tv_userbase.setText(entity.getFirstname() + " "+ entity.getLastname() + " / " +entity.getGender() );
             ((ItemViewHolder)holder).tv_credential.setText("证件类型：" + entity.getCredential_type());
             ((ItemViewHolder)holder).tv_credential_number.setText("证件号码：" + entity.getCredential());
+            ((ItemViewHolder)holder).tv_last_submit_place.setText(context.getResources().getString(R.string.location, entity.getCreated_at(),entity.getLocation_address()));
             ((ItemViewHolder)holder).tv_status.setText(entity.getStatus());
         }else if(type == TYPE_EMPTY){
             ((EmptyViewHolder)holder).tv_empty_message.setText("当前没有任何新入境人员登记");

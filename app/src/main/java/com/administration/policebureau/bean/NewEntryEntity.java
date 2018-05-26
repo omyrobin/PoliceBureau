@@ -105,6 +105,8 @@ public class NewEntryEntity implements Serializable{
     private String created_at;
     private String updated_at;
     private Object reject_fields;
+    private String location;
+    private String location_address;
 
     public int getId() {
         return id;
@@ -480,5 +482,21 @@ public class NewEntryEntity implements Serializable{
 
     public void setReject_fields(Object reject_fields) {
         this.reject_fields = reject_fields;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getLocation_address() {
+        return location_address;
+    }
+
+    public void setLocation_address(String location_address) {
+        this.location_address = location_address;
     }
 }

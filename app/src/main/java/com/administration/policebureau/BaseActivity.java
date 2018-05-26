@@ -11,13 +11,20 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.Window;
 
+import com.administration.policebureau.api.PutService;
+import com.administration.policebureau.bean.BaseResponse;
 import com.administration.policebureau.bean.NewEntryEntity;
+import com.administration.policebureau.http.ProgressSubscriber;
+import com.administration.policebureau.http.RetrofitClient;
+import com.administration.policebureau.http.RetrofitManager;
 import com.administration.policebureau.login.LoginActivity;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
 
 import butterknife.ButterKnife;
+import io.reactivex.Observable;
+import retrofit2.Response;
 
 /**
  * Created by omyrobin on 2017/4/5.
@@ -132,12 +139,13 @@ public abstract class BaseActivity extends AppCompatActivity{
         params.put("house_address", infoEntity.getHouse_address());
 //        params.put("house_type",infoEntity.getHouse_type());
         if (App.getInstance().isHave()) {
-//            Gson gson = new Gson();
-//            params.put("landlord_identity_image",infoEntity.getLandlord_identity_image());
-//            Log.i("TAG", gson.toJson(infoEntity.getHouse_contract_image()).toString());
-//            for(int i=0; i<infoEntity.getHouse_contract_image().length; i++){
-//                params.put("house_contract_image"+"["+i+"]",infoEntity.getHouse_contract_image()[i]);
-//            }
+            Gson gson = new Gson();
+            params.put("landlord_identity_image",infoEntity.getLandlord_identity_image());
+            Log.i("TAG", gson.toJson(infoEntity.getHouse_contract_image()).toString());
+            String [] strs = infoEntity.getHouse_contract_image().split(",");
+            for(int i=0; i<strs.length; i++){
+                params.put("house_contract_image"+"["+i+"]",strs[i]);
+            }
         } else {
 //            params.put("checkin_date",infoEntity.getCheckin_date());
 //            params.put("police_station",infoEntity.getPolice_station());
@@ -148,7 +156,28 @@ public abstract class BaseActivity extends AppCompatActivity{
             params.put("landlord_gender", infoEntity.getLandlord_gender());
             params.put("landlord_phone", infoEntity.getLandlord_phone());
         }
+        //提交坐标
+        params.put("location",infoEntity.getLocation());
+        params.put("location_address",infoEntity.getLocation_address());
         return params;
     }
+
+    protected void registrationInfoAgain(int id){
+        PutService putService = RetrofitManager.getRetrofit().create(PutService.class);
+        Observable<BaseResponse<NewEntryEntity>> observable =  putService.registerInfo(id, 2);
+        RetrofitClient.client().request(observable, new ProgressSubscriber<NewEntryEntity>(this) {
+            @Override
+            protected void onSuccess(NewEntryEntity data) {
+//                ToastUtil.showShort(getString(R.string.info_succeed));
+                finish();
+            }
+
+            @Override
+            protected void onFailure(String message) {
+//                ToastUtil.showShort(getString(R.string.info_falid));
+            }
+        });
+    }
+
 
 }
