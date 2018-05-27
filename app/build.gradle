@@ -6,7 +6,7 @@ android {
     defaultConfig {
         applicationId "com.administration.policebureau"
         minSdkVersion 15
-        targetSdkVersion 26
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -51,7 +51,7 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     compile 'com.android.support:cardview-v7:26.0.0-alpha1'
     //3D地图so及jar
-    compile 'com.amap.api:3dmap:latest.integration'
+//    compile 'com.amap.api:3dmap:latest.integration'
     //搜索功能
     compile 'com.amap.api:search:latest.integration'
 }

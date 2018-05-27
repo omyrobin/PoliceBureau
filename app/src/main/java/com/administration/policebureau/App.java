@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.administration.policebureau.bean.NewEntryEntity;
 import com.administration.policebureau.bean.UserEntity;
+import com.administration.policebureau.util.FileUtil;
 
 /**
  * Created by omyrobin on 2018/1/14.
@@ -27,6 +28,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         mApp = this;
+        FileUtil.instance(this);
     }
 
     public UserEntity getUserEntity() {

@@ -15,6 +15,7 @@ import com.administration.policebureau.R;
 import com.administration.policebureau.api.PostService;
 import com.administration.policebureau.bean.BaseResponse;
 import com.administration.policebureau.bean.UserEntity;
+import com.administration.policebureau.download.DownService;
 import com.administration.policebureau.home.HomeActivity;
 import com.administration.policebureau.http.ProgressSubscriber;
 import com.administration.policebureau.http.RetrofitClient;
@@ -54,7 +55,8 @@ public class LoginActivity extends BaseActivity{
 
     @Override
     protected void initializeActivity() {
-
+        Intent intent = new Intent(this, DownService.class);
+        startService(intent);
     }
 
     @OnClick(R.id.tv_register_user)

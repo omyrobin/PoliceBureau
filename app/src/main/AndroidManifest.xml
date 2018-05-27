@@ -7,6 +7,26 @@
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!--允许程序读写手机状态和身份-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <!--用于进行网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <!--用于访问GPS定位-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <!--用于获取运营商信息，用于支持提供运营商信息相关的接口-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!--用于访问wifi网络信息，wifi信息会用于进行网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <!--用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <!--用于访问网络，网络定位需要上网-->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <!--用于申请调用A-GPS模块-->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
 
     <application
         android:allowBackup="true"
@@ -16,6 +36,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
+
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="3b8a510f8aaab7164fb381b9e2226830"/>
+
+        <service
+            android:name="com.administration.policebureau.download.DownService"
+            android:enabled="true"
+            android:exported="false" >
+        </service>
+
+
         <activity android:name=".login.LoginActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,6 +71,10 @@
 
         <activity
             android:name=".home.tab.message.MessageBoardActivity"
+            android:launchMode="singleTop"/>
+
+        <activity
+            android:name=".map.MapActivity"
             android:launchMode="singleTop"/>
     </application>
 

@@ -20,6 +20,9 @@ import com.administration.policebureau.R;
 import com.administration.policebureau.adapter.PhotosAdapter;
 import com.administration.policebureau.bean.NewEntryEntity;
 import com.administration.policebureau.bigimg.BigImgActivity;
+import com.administration.policebureau.map.MapActivity;
+import com.administration.policebureau.util.FileUtil;
+import com.administration.policebureau.util.ToastUtil;
 import com.bumptech.glide.Glide;
 
 import java.util.Arrays;
@@ -220,6 +223,15 @@ public class InfomationActivity extends BaseActivity implements PhotosAdapter.On
     @OnClick(R.id.toolbar_action)
     public void onAction(){
         checkState();
+    }
+
+    @OnClick(R.id.tv_last_move)
+    public void toMap(){
+        if(FileUtil.hasSoFile(this)){
+            MapActivity.newInstance(this,infoEntity.getLocation(), infoEntity.getLocation_address());
+        }else {
+            ToastUtil.showShort("地图相关组件正在加载中,请耐心等待");
+        }
     }
 
     @OnClick({R.id.img_avata, R.id.img_passport_info, R.id.img_entry_page, R.id.img_visa_page,R.id.img_landlord_identity})
